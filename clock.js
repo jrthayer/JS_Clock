@@ -24,7 +24,7 @@ displayClock();
 var alarm;
 var aHour;
 var aMin;
-
+var adjustRepeat = null;
 
 function modifyAlarm(){
     alarm = document.querySelector(".cAlarm").textContent;
@@ -68,9 +68,26 @@ function setAlarm(){
     document.querySelector(".cAlarm").textContent = alarm;
 }
 
+//quickly increases alarm value when button is held
+function hold(adjustAlarm){
+    adjustAlarm();
+    adjustRepeat = setInterval(adjustAlarm, 100);
+}
 
+function release(){
+    clearInterval(adjustRepeat);
+}
 
-document.getElementById("addHourBtn").addEventListener("click", function(){addHour()});
-document.getElementById("addMinBtn").addEventListener("click", function(){addMin()});
-document.getElementById("subHourBtn").addEventListener("click", function(){subHour()});
-document.getElementById("subMinBtn").addEventListener("click", function(){subMin()});
+// document.getElementById("addHourBtn").addEventListener("click", function(){addHour()});
+// document.getElementById("addMinBtn").addEventListener("click", function(){addMin()});
+// document.getElementById("subHourBtn").addEventListener("click", function(){subHour()});
+// document.getElementById("subMinBtn").addEventListener("click", function(){subMin()});
+
+document.getElementById("addHourBtn").addEventListener("mousedown", function(){hold(addHour)});
+document.getElementById("addHourBtn").addEventListener("mouseup", function(){release()});
+document.getElementById("addMinBtn").addEventListener("mousedown", function(){hold(addMin)});
+document.getElementById("addMinBtn").addEventListener("mouseup", function(){release()});
+document.getElementById("subHourBtn").addEventListener("mousedown", function(){hold(subHour)});
+document.getElementById("subHourBtn").addEventListener("mouseup", function(){release()});
+document.getElementById("subMinBtn").addEventListener("mousedown", function(){hold(subMin)});
+document.getElementById("subMinBtn").addEventListener("mouseup", function(){release()});
