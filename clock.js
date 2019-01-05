@@ -1,3 +1,9 @@
+var cDisplay = document.querySelector(".cDisplay");
+var aDisplay = document.querySelector(".aDisplay");
+var alarmAudio = document.getElementById("alarmNoise");
+var alarmBtn = document.getElementById("alarmBtn");
+var alarm = document.getElementById("cAlarm");
+
 //clock display functions
 
 function displayClock(){
@@ -12,23 +18,36 @@ function displayClock(){
     if(s<10) s = "0"+s;
 
     var cValue = h+":"+m+":"+s;
-    var cText = document.querySelector(".cDisplay");
-    cText.textContent = cValue;
+    cDisplay.textContent = cValue;
 
+    compareTime();
     setTimeout(displayClock, 1000);
 }
 
 displayClock();
 
+//alarm/clock functions
+function compareTime(){
+    var curTime = cDisplay.textContent.split(":");
+    var curAlarm = aDisplay.textContent.split(":");
+
+    if(curTime[0] == curAlarm[0] && curTime[1] == curAlarm[1]){
+        alarmAudio.play();
+        alarmBtn.classList.remove("hide"); 
+        alarmBtn.classList.add("show");
+        alarm.classList.add("hide");
+        alarm.classList.remove("show"); 
+    } 
+}
+
+
 //alarm functions
-var alarm;
 var aHour;
 var aMin;
 var adjustRepeat = null;
 
 function modifyAlarm(){
-    alarm = document.querySelector(".cAlarm").textContent;
-    var aArray = alarm.split(":");
+    var aArray = aDisplay.textContent.split(":");
     aHour = Number(aArray[0]);
     aMin = Number(aArray[1]);
 }
@@ -64,8 +83,17 @@ function subMin(){
 function setAlarm(){
     if(aHour < 10) aHour = "0"+aHour;
     if(aMin <10) aMin = "0" + aMin;
-    alarm = aHour+":"+aMin;
-    document.querySelector(".cAlarm").textContent = alarm;
+    var aValue = aHour+":"+aMin;
+    aDisplay.textContent = aValue;
+}
+
+function resetAlarm(){
+    alarm.classList.remove("hide"); 
+    alarm.classList.add("show");
+    alarmBtn.classList.add("hide"); 
+    alarmBtn.classList.remove("show");
+    aDisplay.textContent = "00:00";
+    alarmAudio.pause();
 }
 
 //quickly increases alarm value when button is held
@@ -78,11 +106,6 @@ function release(){
     clearInterval(adjustRepeat);
 }
 
-// document.getElementById("addHourBtn").addEventListener("click", function(){addHour()});
-// document.getElementById("addMinBtn").addEventListener("click", function(){addMin()});
-// document.getElementById("subHourBtn").addEventListener("click", function(){subHour()});
-// document.getElementById("subMinBtn").addEventListener("click", function(){subMin()});
-
 document.getElementById("addHourBtn").addEventListener("mousedown", function(){hold(addHour)});
 document.getElementById("addHourBtn").addEventListener("mouseup", function(){release()});
 document.getElementById("addMinBtn").addEventListener("mousedown", function(){hold(addMin)});
@@ -91,3 +114,5 @@ document.getElementById("subHourBtn").addEventListener("mousedown", function(){h
 document.getElementById("subHourBtn").addEventListener("mouseup", function(){release()});
 document.getElementById("subMinBtn").addEventListener("mousedown", function(){hold(subMin)});
 document.getElementById("subMinBtn").addEventListener("mouseup", function(){release()});
+
+document.getElementById("alarmBtn").addEventListener("click", function(){resetAlarm()});

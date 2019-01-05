@@ -9,11 +9,16 @@
     <body>
         <div class="clock">
             <div class="cDisplay"></div>
-            <button id="subMinBtn">-</button>
-            <button id="subHourBtn">--</button>
-            <div class="cAlarm">00:00</div>
-            <button id="addHourBtn">++</button>
-            <button id="addMinBtn">+</button>
+            <div id="cAlarm">
+                <button id="subMinBtn">-</button>
+                <button id="subHourBtn">--</button>
+                <div class="aDisplay">00:00</div>
+                <button id="addHourBtn">++</button>
+                <button id="addMinBtn">+</button>
+            </div>
+            
+            <button id="alarmBtn" class="hide">Turn Off</button>
+            <audio id="alarmNoise" src="Annoying_Alarm_Clock.mp3" type="audio/mp3"></audio>
         </div>
     </div>
 
