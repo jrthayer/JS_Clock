@@ -4,6 +4,10 @@ var alarmAudio = document.getElementById("alarmNoise");
 var alarmBtn = document.getElementById("alarmBtn");
 var alarm = document.getElementById("cAlarm");
 
+var aHour;
+var aMin;
+var adjustRepeat = null;
+
 //clock display functions
 
 function displayClock(){
@@ -37,15 +41,14 @@ function compareTime(){
         alarmBtn.classList.add("show");
         alarm.classList.add("hide");
         alarm.classList.remove("show"); 
+        //ensures interval doesn't get stuck on when user is still 
+        //actively adjusting alarm time when it goes off
+        release();
     } 
 }
 
 
 //alarm functions
-var aHour;
-var aMin;
-var adjustRepeat = null;
-
 function modifyAlarm(){
     var aArray = aDisplay.textContent.split(":");
     aHour = Number(aArray[0]);
@@ -94,6 +97,7 @@ function resetAlarm(){
     alarmBtn.classList.remove("show");
     aDisplay.textContent = "00:00";
     alarmAudio.pause();
+
 }
 
 //quickly increases alarm value when button is held

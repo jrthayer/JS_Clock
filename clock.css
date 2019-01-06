@@ -1,7 +1,93 @@
+:root{
+    --displayColor: rgb(38, 223, 38);
+    --displayBackground: #000000;
+}
+
+html, body {
+    background: grey;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.widget{
+    height: 100%;
+    flex: 1;
+    background: var(--displayBackground);
+}
+
+.left{
+    margin-right: .5%;
+}
+
+.right{
+    margin-left: .5%;
+}
+
+.row{
+    flex: 1;
+    width: 98%;
+    padding: 1%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+/*clock css styling*/
+.clock {
+    min-width: 500px;
+    text-align: center;
+    position: relative;
+    float: left;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cDisplay{
+    color: var(--displayColor);
+    font-size: 100px;
+    font-family: Orbitron;
+    letter-spacing: 7px;  
+}
+
+.aDisplay{
+    color: var(--displayColor);
+    font-size: 30px;
+    font-family: Orbitron;
+    display: inline;
+}
+
 .show{
     display: inline-block;
 }
 
 .hide{
     display: none;
+}
+
+.cButton{
+    border: none;
+    color: var(--displayBackground);
+    background: var(--displayColor);
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+
+    outline:0;
+}
+
+#alarmBtn{
+    border: none;
+    color: var(--displayBackground);
+    background: red;
+    font-size: 30px;
+
+    outline:0;
 }
