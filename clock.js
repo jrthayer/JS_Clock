@@ -84,7 +84,6 @@ function subMin(){
 }
 
 function setAlarm(){
-    if(aHour < 10) aHour = "0"+aHour;
     if(aMin <10) aMin = "0" + aMin;
     var aValue = aHour+":"+aMin;
     aDisplay.textContent = aValue;
@@ -95,7 +94,7 @@ function resetAlarm(){
     alarm.classList.add("show");
     alarmBtn.classList.add("hide"); 
     alarmBtn.classList.remove("show");
-    aDisplay.textContent = "00:00";
+    aDisplay.textContent = "0:00";
     alarmAudio.pause();
 
 }
