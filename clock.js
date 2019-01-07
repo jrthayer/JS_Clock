@@ -111,12 +111,10 @@ function release(){
 }
 
 document.getElementById("addHourBtn").addEventListener("mousedown", function(){hold(addHour)});
-document.getElementById("addHourBtn").addEventListener("mouseup", function(){release()});
 document.getElementById("addMinBtn").addEventListener("mousedown", function(){hold(addMin)});
-document.getElementById("addMinBtn").addEventListener("mouseup", function(){release()});
 document.getElementById("subHourBtn").addEventListener("mousedown", function(){hold(subHour)});
-document.getElementById("subHourBtn").addEventListener("mouseup", function(){release()});
 document.getElementById("subMinBtn").addEventListener("mousedown", function(){hold(subMin)});
-document.getElementById("subMinBtn").addEventListener("mouseup", function(){release()});
+
+window.addEventListener("mouseup", function(){release()});
 
 document.getElementById("alarmBtn").addEventListener("click", function(){resetAlarm()});
