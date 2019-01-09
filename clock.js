@@ -1,8 +1,12 @@
-var cDisplay = document.querySelector(".cDisplay");
-var aDisplay = document.querySelector(".aDisplay");
+var cDisplay = document.getElementById("cDisplay");
+var aDisplay = document.getElementById("aDisplay");
 var alarmAudio = document.getElementById("alarmNoise");
-var alarmBtn = document.getElementById("alarmBtn");
+var alarmBtn = document.getElementById("aBtn");
+var alarmToggleBtn = document.getElementById("armBtn");
 var alarm = document.getElementById("cAlarm");
+var alarmState = false;
+var displayColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--displayColor");
+var backgroundColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--displayBackground");;
 
 var aHour;
 var aMin;
@@ -35,7 +39,7 @@ function compareTime(){
     var curTime = cDisplay.textContent.split(":");
     var curAlarm = aDisplay.textContent.split(":");
 
-    if(curTime[0] == curAlarm[0] && curTime[1] == curAlarm[1]){
+    if(curTime[0] == curAlarm[0] && curTime[1] == curAlarm[1] && alarmState){
         alarmAudio.play();
         alarmBtn.classList.remove("hide"); 
         alarmBtn.classList.add("show");
@@ -96,7 +100,22 @@ function resetAlarm(){
     alarmBtn.classList.remove("show");
     aDisplay.textContent = "0:00";
     alarmAudio.pause();
+}
 
+function toggleAlarm(){
+    alarmState = !alarmState;
+    if(alarmState)
+    {
+        alarmToggleBtn.style.background = displayColor;
+        alarmToggleBtn.style.color = backgroundColor;
+        alarmToggleBtn.innerHTML = "ON";
+    }
+    else
+    {
+        alarmToggleBtn.style.background = backgroundColor;
+        alarmToggleBtn.style.color = displayColor;
+        alarmToggleBtn.innerHTML = "OFF";
+    }
 }
 
 //quickly increases alarm value when button is held
@@ -116,4 +135,5 @@ document.getElementById("subMinBtn").addEventListener("mousedown", function(){ho
 
 window.addEventListener("mouseup", function(){release()});
 
-document.getElementById("alarmBtn").addEventListener("click", function(){resetAlarm()});
+aBtn.addEventListener("click", function(){resetAlarm()});
+alarmToggleBtn.addEventListener("click", function(){toggleAlarm()});

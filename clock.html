@@ -7,18 +7,22 @@
 
     <body>
         <div class="row">
-            <div class="widget left">
-                <div class="clock">
-                    <div class="cDisplay"></div>
+            <div class="widget">
+                <div id="clock">
+                    <div id="cDisplay"></div>
                     <div id="cAlarm">
-                        <button id="subMinBtn" class="cButton">-</button>
-                        <button id="subHourBtn" class="cButton">--</button>
-                        <div class="aDisplay">0:00</div>
-                        <button id="addHourBtn" class="cButton">++</button>
-                        <button id="addMinBtn" class="cButton">+</button>
+                        <div id="aHeader"> ALARM</div>
+                        <div class="aModify">
+                            <button id="armBtn" class="cButton">OFF</button>
+                            <button id="subMinBtn" class="cButton">-</button>
+                            <button id="subHourBtn" class="cButton">--</button>
+                            <div id="aDisplay">0:00</div>
+                            <button id="addHourBtn" class="cButton">++</button>
+                            <button id="addMinBtn" class="cButton">+</button>
+                        </div>
                     </div>
                     
-                    <button id="alarmBtn" class="hide">Turn Off</button>
+                    <button id="aBtn" class="hide">Turn Off</button>
                     <audio id="alarmNoise" src="./assets/Annoying_Alarm_Clock.mp3" type="audio/mp3" loop></audio>
                 </div>
             </div>

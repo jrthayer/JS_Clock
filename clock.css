@@ -54,8 +54,8 @@ html, body {
 }
 
 /*clock css styling*/
-.clock {
-    min-width: 500px;
+#clock {
+    min-width: 550px;
     text-align: center;
     position: relative;
     float: left;
@@ -64,18 +64,63 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
-.cDisplay{
+#cDisplay{
     color: var(--displayColor);
     font-size: 100px;
     font-family: Orbitron;
     letter-spacing: 7px;  
 }
 
-.aDisplay{
+#cAlarm{
+    position: relative;
     color: var(--displayColor);
+    background: var(--displayBackground);
     font-size: 25px;
     font-family: Orbitron;
+    border: 1px var(--displayColor) solid;
+    border-radius: 15px;
+    width: 100%;
+}
+
+#aDisplay{
     display: inline;
+    color: var()
+}
+
+#aHeader{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 10px;
+    background-color: var(--displayBackground);
+    color: var(--displayColor); 
+}
+
+#aBtn{
+    border: none;
+    color: var(--displayBackground);
+    background: red;
+    font-size: 30px;
+
+    outline:0;
+    width: 100%;
+    border-radius: 15px;
+}
+
+#armBtn{
+    background: var(--displayBackground);
+    color: var(--displayColor); 
+    border: 1px var(--displayColor) solid;
+    border-radius: 15px;
+    width: 34%;
+    margin-right: 2%;
+}
+
+.aModify{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 100%;
 }
 
 .show{
@@ -88,20 +133,21 @@ html, body {
 
 .cButton{
     border: none;
-    color: var(--displayBackground);
     background: var(--displayColor);
+    color: var(--displayBackground);
     text-align: center;
     font-size: 20px;
     padding: 5px;
-
+    width: 7.5%;
     outline:0;
+    border-radius: 100%;
 }
 
-#alarmBtn{
-    border: none;
-    color: var(--displayBackground);
-    background: red;
-    font-size: 30px;
+.cBtnLeft{
+    border-radius: 15px 2px 2px 15px;
+}
 
-    outline:0;
+.cBtnRight{
+    border-radius: 2px 15px 15px 2px;
+
 }
