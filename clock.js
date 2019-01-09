@@ -100,6 +100,7 @@ function resetAlarm(){
     alarmBtn.classList.remove("show");
     aDisplay.textContent = "0:00";
     alarmAudio.pause();
+    toggleAlarm();
 }
 
 function toggleAlarm(){
