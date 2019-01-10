@@ -60,14 +60,27 @@ determineAmPm();
 function compareTime(){
     var curTime = cDisplay.textContent.split(":");
     var curAlarm = aDisplay.textContent.split(":");
+    if(alarmState)
+    {   
+        if(curTime[0] == curAlarm[0] && curTime[1] == curAlarm[1]){
+            if(ampmState){
+                if(cDisplayAmPm.textContent == aDisplayAmPm.textContent){
+                    tripAlarm();
+                }
+            }
+            else{
+                tripAlarm();
+            }
+        }
+    }   
+}
 
-    if(curTime[0] == curAlarm[0] && curTime[1] == curAlarm[1] && alarmState){
-        alarmAudio.play();
-        alarmBtn.classList.remove("hide"); 
-        alarmBtn.classList.add("show");
-        alarm.classList.add("hide");
-        alarm.classList.remove("show"); 
-    } 
+function tripAlarm(){
+    alarmAudio.play();
+    alarmBtn.classList.remove("hide"); 
+    alarmBtn.classList.add("show");
+    alarm.classList.add("hide");
+    alarm.classList.remove("show"); 
 }
 
 //alarm functions
