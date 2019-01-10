@@ -1,10 +1,13 @@
 var cDisplay = document.getElementById("cDisplay");
+var cDisplayAmPm = document.getElementById("clkAmPm");
 var aDisplay = document.getElementById("aDisplay");
+var aDisplayAmPm = document.getElementById("alrmAmPm");
 var alarmAudio = document.getElementById("alarmNoise");
 var alarmBtn = document.getElementById("aBtn");
 var alarmToggleBtn = document.getElementById("armBtn");
 var alarm = document.getElementById("cAlarm");
 var alarmState = false;
+var ampmState = true;
 var displayColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--displayColor");
 var backgroundColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--displayBackground");;
 
@@ -25,6 +28,12 @@ function displayClock(){
     if(m<10) m = "0"+m;
     if(s<10) s = "0"+s;
 
+    //convert military to am/pm
+    if(ampmState){
+        if(h > 12) h = h - 12;
+        if(h == 0) h = 12;
+    }
+
     var cValue = h+":"+m+":"+s;
     cDisplay.textContent = cValue;
 
@@ -32,7 +41,20 @@ function displayClock(){
     setTimeout(displayClock, 1000);
 }
 
+function determineAmPm(){
+    var d = new Date();
+    var h = d.getHours();
+    if (d<11){
+        cDisplayAmPm.textContent = "AM";
+    }
+    else
+    {
+        cDisplayAmPm.textContent = "PM";
+    }
+}
+
 displayClock();
+determineAmPm();
 
 //alarm/clock functions
 function compareTime(){
@@ -45,12 +67,8 @@ function compareTime(){
         alarmBtn.classList.add("show");
         alarm.classList.add("hide");
         alarm.classList.remove("show"); 
-        //ensures interval doesn't get stuck on when user is still 
-        //actively adjusting alarm time when it goes off
-        release();
     } 
 }
-
 
 //alarm functions
 function modifyAlarm(){
@@ -62,14 +80,35 @@ function modifyAlarm(){
 function addHour(){
     modifyAlarm();
     aHour+= 1;
-    if(aHour > 23) aHour = 0;
+    if(ampmState){
+        if(aHour > 12){
+            aHour = 1;
+        }
+        else if(aHour == 12){
+            toggleAlrmAmPm();
+        } 
+    }
+    else{
+        if(aHour > 23) aHour = 0;
+    }
     setAlarm();
 }
 
 function subHour(){
     modifyAlarm();
     aHour-= 1;
-    if(aHour < 0) aHour = 23;
+    if (ampmState){
+        if(aHour < 1){ 
+            aHour = 12;
+            
+        }
+        else if(aHour == 11){
+            toggleAlrmAmPm();
+        }
+    }
+    else{
+        if(aHour < 0) aHour = 23;
+    }
     setAlarm();
 }
 
@@ -87,6 +126,15 @@ function subMin(){
     setAlarm();
 }
 
+function toggleAlrmAmPm(){
+    if(aDisplayAmPm.textContent == "AM"){
+        aDisplayAmPm.textContent = "PM";
+    }
+    else{
+        aDisplayAmPm.textContent = "AM";
+    }
+}
+
 function setAlarm(){
     if(aMin <10) aMin = "0" + aMin;
     var aValue = aHour+":"+aMin;
@@ -98,21 +146,26 @@ function resetAlarm(){
     alarm.classList.add("show");
     alarmBtn.classList.add("hide"); 
     alarmBtn.classList.remove("show");
-    aDisplay.textContent = "0:00";
+    if(ampmState){
+        aDisplay.textContent = "12:00";
+        aDisplayAmPm.textContent = "AM";
+
+    }
+    else{
+        aDisplay.textContent = "0:00";
+    }
     alarmAudio.pause();
     toggleAlarm();
 }
 
 function toggleAlarm(){
     alarmState = !alarmState;
-    if(alarmState)
-    {
+    if(alarmState){
         alarmToggleBtn.style.background = displayColor;
         alarmToggleBtn.style.color = backgroundColor;
         alarmToggleBtn.innerHTML = "ON";
     }
-    else
-    {
+    else{
         alarmToggleBtn.style.background = backgroundColor;
         alarmToggleBtn.style.color = displayColor;
         alarmToggleBtn.innerHTML = "OFF";
@@ -129,12 +182,32 @@ function release(){
     clearInterval(adjustRepeat);
 }
 
-document.getElementById("addHourBtn").addEventListener("mousedown", function(){hold(addHour)});
-document.getElementById("addMinBtn").addEventListener("mousedown", function(){hold(addMin)});
-document.getElementById("subHourBtn").addEventListener("mousedown", function(){hold(subHour)});
-document.getElementById("subMinBtn").addEventListener("mousedown", function(){hold(subMin)});
+function toggleAmPm(){
+    ampmState = !ampmState;
+    if(!ampmState){
+        aDisplayAmPm.classList.remove("amPm");
+        cDisplayAmPm.classList.remove("amPm");
+        aDisplayAmPm.classList.add("hide");
+        cDisplayAmPm.classList.add("hide");
+        aDisplay.textContent = "0:00";
+    }
+    else
+    {
+        aDisplayAmPm.classList.remove("hide");
+        cDisplayAmPm.classList.remove("hide");
+        aDisplayAmPm.classList.add("amPm");
+        cDisplayAmPm.classList.add("amPm");
+        aDisplay.textContent = "12:00";
+    }
+}
 
-window.addEventListener("mouseup", function(){release()});
+document.getElementById("addHourBtn").addEventListener("mousedown", function(){hold(addHour);});
+document.getElementById("addMinBtn").addEventListener("mousedown", function(){hold(addMin);});
+document.getElementById("subHourBtn").addEventListener("mousedown", function(){hold(subHour);});
+document.getElementById("subMinBtn").addEventListener("mousedown", function(){hold(subMin);});
 
-aBtn.addEventListener("click", function(){resetAlarm()});
-alarmToggleBtn.addEventListener("click", function(){toggleAlarm()});
+window.addEventListener("mouseup", function(){release();});
+
+aBtn.addEventListener("click", function(){resetAlarm();});
+alarmToggleBtn.addEventListener("click", function(){toggleAlarm();});
+cDisplay.addEventListener("click", function(){toggleAmPm();});
