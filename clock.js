@@ -24,6 +24,9 @@ function displayClock(){
     var m = d.getMinutes();
     var s = d.getSeconds();
 
+    //changes am/pm at the start of each hour
+    if(m == 0 && s == 0) determineAmPm();
+
     //accounts for single digits minute and hours
     if(m<10) m = "0"+m;
     if(s<10) s = "0"+s;
@@ -41,14 +44,13 @@ function displayClock(){
     setTimeout(displayClock, 1000);
 }
 
-function determineAmPm(){
+function determineAmPm(hours){
     var d = new Date();
     var h = d.getHours();
-    if (d<11){
+    if (h<=11){
         cDisplayAmPm.textContent = "AM";
     }
-    else
-    {
+    else{
         cDisplayAmPm.textContent = "PM";
     }
 }
@@ -60,8 +62,7 @@ determineAmPm();
 function compareTime(){
     var curTime = cDisplay.textContent.split(":");
     var curAlarm = aDisplay.textContent.split(":");
-    if(alarmState)
-    {   
+    if(alarmState){   
         if(curTime[0] == curAlarm[0] && curTime[1] == curAlarm[1]){
             if(ampmState){
                 if(cDisplayAmPm.textContent == aDisplayAmPm.textContent){
@@ -204,8 +205,7 @@ function toggleAmPm(){
         cDisplayAmPm.classList.add("hide");
         aDisplay.textContent = "0:00";
     }
-    else
-    {
+    else{
         aDisplayAmPm.classList.remove("hide");
         cDisplayAmPm.classList.remove("hide");
         aDisplayAmPm.classList.add("amPm");
