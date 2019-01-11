@@ -1,11 +1,11 @@
-var cDisplay = document.getElementById("cDisplay");
-var cDisplayAmPm = document.getElementById("clkAmPm");
-var aDisplay = document.getElementById("aDisplay");
+var cDisplay = document.getElementById("clckDisplay");
+var cDisplayAmPm = document.getElementById("clckAmPm");
+var aDisplay = document.getElementById("alrmDisplay");
 var aDisplayAmPm = document.getElementById("alrmAmPm");
-var alarmAudio = document.getElementById("alarmNoise");
-var alarmBtn = document.getElementById("aBtn");
+var alarmAudio = document.getElementById("alrmNoise");
+var alarmBtn = document.getElementById("alrmResetBtn");
 var alarmToggleBtn = document.getElementById("armBtn");
-var alarm = document.getElementById("cAlarm");
+var alarm = document.getElementById("clckAlarm");
 var alarmState = false;
 var ampmState = true;
 var displayColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--displayColor");
@@ -16,7 +16,6 @@ var aMin;
 var adjustRepeat = null;
 
 //clock display functions
-
 function displayClock(){
 
     var d = new Date();
@@ -79,9 +78,9 @@ function compareTime(){
 function tripAlarm(){
     alarmAudio.play();
     alarmBtn.classList.remove("hide"); 
-    alarmBtn.classList.add("show");
+    alarmBtn.classList.add("disBlock");
     alarm.classList.add("hide");
-    alarm.classList.remove("show"); 
+    alarm.classList.remove("disBlock"); 
 }
 
 //alarm functions
@@ -157,9 +156,9 @@ function setAlarm(){
 
 function resetAlarm(){
     alarm.classList.remove("hide"); 
-    alarm.classList.add("show");
+    alarm.classList.add("disBlock");
     alarmBtn.classList.add("hide"); 
-    alarmBtn.classList.remove("show");
+    alarmBtn.classList.remove("disBlock");
     if(ampmState){
         aDisplay.textContent = "12:00";
         aDisplayAmPm.textContent = "AM";
@@ -189,7 +188,7 @@ function toggleAlarm(){
 //quickly increases alarm value when button is held
 function hold(adjustAlarm){
     adjustAlarm();
-    adjustRepeat = setInterval(adjustAlarm, 100);
+    adjustRepeat = setInterval(adjustAlarm, 125);
 }
 
 function release(){
@@ -199,8 +198,8 @@ function release(){
 function toggleAmPm(){
     ampmState = !ampmState;
     if(!ampmState){
-        aDisplayAmPm.classList.remove("amPm");
-        cDisplayAmPm.classList.remove("amPm");
+        aDisplayAmPm.classList.remove("disInline");
+        cDisplayAmPm.classList.remove("disInline");
         aDisplayAmPm.classList.add("hide");
         cDisplayAmPm.classList.add("hide");
         aDisplay.textContent = "0:00";
@@ -208,8 +207,8 @@ function toggleAmPm(){
     else{
         aDisplayAmPm.classList.remove("hide");
         cDisplayAmPm.classList.remove("hide");
-        aDisplayAmPm.classList.add("amPm");
-        cDisplayAmPm.classList.add("amPm");
+        aDisplayAmPm.classList.add("disInline");
+        cDisplayAmPm.classList.add("disInline");
         aDisplay.textContent = "12:00";
     }
 }
@@ -221,6 +220,6 @@ document.getElementById("subMinBtn").addEventListener("mousedown", function(){ho
 
 window.addEventListener("mouseup", function(){release();});
 
-aBtn.addEventListener("click", function(){resetAlarm();});
+alarmBtn.addEventListener("click", function(){resetAlarm();});
 alarmToggleBtn.addEventListener("click", function(){toggleAlarm();});
 cDisplay.addEventListener("click", function(){toggleAmPm();});
