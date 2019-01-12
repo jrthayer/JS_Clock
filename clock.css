@@ -1,8 +1,7 @@
 :root{
-    --displayColor: rgb(38, 223, 38);
-    --displayBackground: #000000;
+    --clckTextColor: rgb(38, 223, 38);
+    --clckBackground: #000000;
     --clockFontSize: 100px;
-
 }
 
 /* orbitron-regular - latin */
@@ -20,7 +19,7 @@
 }
 
 html, body {
-    background: var(--displayBackground);
+    background: var(--clckBackground);
     height: 100%;
     width: 100%;
     margin: 0;
@@ -38,12 +37,12 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--displayColor);
-    background: var(--displayBackground);
+    color: var(--clckTextColor);
+    background: var(--clckBackground);
 }
 
 #clckDisplay{
-    color: var(--displayColor);
+    color: var(--clckTextColor);
     font-size: var(--clockFontSize);
     font-family: Orbitron;
     letter-spacing: 7px;
@@ -58,7 +57,7 @@ html, body {
     position: relative;
     font-size: calc(var(--clockFontSize)/4);
     font-family: Orbitron;
-    border: 1px var(--displayColor) solid;
+    border: 1px var(--clckTextColor) solid;
     border-radius: 15px;
     width: 90%;
     margin: 0% 5%;
@@ -71,7 +70,7 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0 10px;
-    background-color: var(--displayBackground);
+    background-color: var(--clckBackground);
 }
 
 #alrmDisplay{
@@ -84,7 +83,7 @@ html, body {
 
 #alrmResetBtn{
     border: none;
-    color: var(--displayBackground);
+    color: var(--clckBackground);
     background: red;
     font-size: 30px;
 
@@ -94,9 +93,9 @@ html, body {
 }
 
 #armBtn{
-    background: var(--displayBackground);
-    color: var(--displayColor); 
-    border: 1px var(--displayColor) solid;
+    background: var(--clckBackground);
+    color: var(--clckTextColor); 
+    border: 1px var(--clckTextColor) solid;
     border-radius: 15px;
     font-size: calc(var(--clockFontSize)/5);
     text-align: center;
@@ -127,8 +126,8 @@ html, body {
 
 .cButton{
     border: none;
-    background: var(--displayColor);
-    color: var(--displayBackground);
+    background: var(--clckTextColor);
+    color: var(--clckBackground);
     text-align: center;
     font-size: calc(var(--clockFontSize)/5);
     padding: 5px;
