@@ -6,26 +6,25 @@
     </head>
 
     <body>
-        
-                <div id="clock">
-                    <div id="clckDisplay"></div>
-                    <div id="clckAmPm" class="disInline"></div>
-                    <div id="clckAlarm">
-                        <div id="alrmHeader"> ALARM</div>
-                        <div class="alrmModify">
-                            <button id="armBtn">OFF</button>
-                            <button id="subMinBtn" class="cButton">-</button>
-                            <button id="subHourBtn" class="cButton">--</button>
-                            <div id="alrmDisplay">12:00</div>
-                            <div id="alrmAmPm" class="disInline">AM</div>
-                            <button id="addHourBtn" class="cButton">++</button>
-                            <button id="addMinBtn" class="cButton">+</button>
-                        </div>
-                    </div>
-                    
-                    <button id="alrmResetBtn" class="hide">Turn Off</button>
-                    <audio id="alrmNoise" src="./assets/Annoying_Alarm_Clock.mp3" type="audio/mp3" loop></audio>
+        <div id="clock">
+            <div id="clckDisplay"></div>
+            <div id="clckAmPm" class="disInline"></div>
+            <div id="clckAlarm">
+                <div id="alrmHeader"> ALARM</div>
+                <div class="alrmModify">
+                    <button id="armBtn">OFF</button>
+                    <button id="subMinBtn" class="cButton">-</button>
+                    <button id="subHourBtn" class="cButton">--</button>
+                    <div id="alrmDisplay">12:00</div>
+                    <div id="alrmAmPm" class="disInline">AM</div>
+                    <button id="addHourBtn" class="cButton">++</button>
+                    <button id="addMinBtn" class="cButton">+</button>
                 </div>
+            </div>
+            
+            <button id="alrmResetBtn" class="hide">Turn Off</button>
+            <audio id="alrmNoise" src="./assets/Annoying_Alarm_Clock.mp3" type="audio/mp3" loop></audio>
+        </div>
         <script type="text/javascript" src="clock.js"></script>
     </body>
 </html>

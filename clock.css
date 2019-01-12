@@ -20,39 +20,11 @@
 }
 
 html, body {
-    background: grey;
+    background: var(--displayBackground);
     height: 100%;
     width: 100%;
     margin: 0;
     overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
-.widget{
-    height: 100%;
-    flex: 1;
-    background: var(--displayBackground);
-}
-
-.left{
-    margin-right: .5%;
-}
-
-.right{
-    margin-left: .5%;
-}
-
-.row{
-    flex: 1;
-    width: 98%;
-    padding: 1%;
-
-    display: flex;
-    flex-direction: row;
 }
 
 /*clock css styling*/
