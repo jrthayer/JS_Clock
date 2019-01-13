@@ -8,8 +8,8 @@ var alarmToggleBtn = document.getElementById("armBtn");
 var alarm = document.getElementById("clckAlarm");
 var alarmState = false;
 var ampmState = true;
-var displayColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--displayColor");
-var backgroundColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--displayBackground");;
+var displayColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--clckTextColor");
+var backgroundColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--clckBackground");;
 
 var aHour;
 var aMin;
@@ -168,6 +168,7 @@ function resetAlarm(){
         aDisplay.textContent = "0:00";
     }
     alarmAudio.pause();
+    alarmAudio.currentTime = 0;
     toggleAlarm();
 }
 
