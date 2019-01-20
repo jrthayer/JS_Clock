@@ -22,9 +22,7 @@ function displayClock(){
     var h = d.getHours();
     var m = d.getMinutes();
     var s = d.getSeconds();
-
-    //changes am/pm at the start of each hour
-    if(m == 0 && s == 0) determineAmPm();
+    var amPm = "AM"
 
     //accounts for single digits minute and hours
     if(m<10) m = "0"+m;
@@ -32,30 +30,22 @@ function displayClock(){
 
     //convert military to am/pm
     if(ampmState){
-        if(h > 12) h = h - 12;
+        if(h > 12){
+            h = h - 12;
+            amPm = "PM";
+        } 
         if(h == 0) h = 12;
     }
 
     var cValue = h+":"+m+":"+s;
     cDisplay.textContent = cValue;
+    cDisplayAmPm.textContent = amPm;
 
     compareTime();
     setTimeout(displayClock, 1000);
 }
 
-function determineAmPm(hours){
-    var d = new Date();
-    var h = d.getHours();
-    if (h<=11){
-        cDisplayAmPm.textContent = "AM";
-    }
-    else{
-        cDisplayAmPm.textContent = "PM";
-    }
-}
-
 displayClock();
-determineAmPm();
 
 //alarm/clock functions
 function compareTime(){
