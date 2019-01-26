@@ -28,12 +28,11 @@ function displayClock(){
     if(m<10) m = "0"+m;
     if(s<10) s = "0"+s;
 
+    if(h >= 12) amPm = "PM";
+
     //convert military to am/pm
     if(ampmState){
-        if(h > 12){
-            h = h - 12;
-            amPm = "PM";
-        } 
+        if(h > 12) h = h - 12;
         if(h == 0) h = 12;
     }
 
@@ -145,10 +144,12 @@ function setAlarm(){
 }
 
 function resetAlarm(){
+    //hide button and show alarm panel
     alarm.classList.remove("hide"); 
     alarm.classList.add("disBlock");
     alarmBtn.classList.add("hide"); 
     alarmBtn.classList.remove("disBlock");
+    //reset alarm
     if(ampmState){
         aDisplay.textContent = "12:00";
         aDisplayAmPm.textContent = "AM";
@@ -157,6 +158,8 @@ function resetAlarm(){
     else{
         aDisplay.textContent = "0:00";
     }
+
+    //reset alarm audio
     alarmAudio.pause();
     alarmAudio.currentTime = 0;
     toggleAlarm();
