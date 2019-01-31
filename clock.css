@@ -27,7 +27,7 @@ html, body {
 }
 
 /*clock css styling*/
-#clock {
+.clock {
     min-width: calc(var(--clockFontSize)*6.5);
     min-height: calc(var(--clockFontSize)*2.5);
     padding: 10px;
