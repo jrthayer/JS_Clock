@@ -1,13 +1,13 @@
 class Clock{
     constructor(clock){
-        this.cDisplay = document.getElementById("clckDisplay");
-        this.cDisplayAmPm = document.getElementById("clckAmPm");
-        this.aDisplay = document.getElementById("alrmDisplay");
-        this.aDisplayAmPm = document.getElementById("alrmAmPm");
-        this.alarmAudio = document.getElementById("alrmNoise");
-        this.alarmBtn = document.getElementById("alrmResetBtn");
-        this.alarmToggleBtn = document.getElementById("armBtn");
-        this.alarm = document.getElementById("clckAlarm");
+        this.cDisplay = document.getElementsByClassName("clckDisplay")[0];
+        this.cDisplayAmPm = document.getElementsByClassName("clckAmPm")[0];
+        this.aDisplay = document.getElementsByClassName("alrmDisplay")[0];
+        this.aDisplayAmPm = document.getElementsByClassName("alrmAmPm")[0];
+        this.alarmAudio = document.getElementsByClassName("alrmNoise")[0];
+        this.alarmBtn = document.getElementsByClassName("alrmResetBtn")[0];
+        this.alarmToggleBtn = document.getElementsByClassName("armBtn")[0];
+        this.alarm = document.getElementsByClassName("clckAlarm")[0];
         this.alarmState = false;
         this.ampmState = true;
         this.displayColor = window.getComputedStyle(document.querySelector("html")).getPropertyValue("--clckTextColor");
@@ -18,10 +18,10 @@ class Clock{
         this.aMin;
         this.adjustRepeat = null;
     
-        document.getElementById("addHourBtn").addEventListener("mousedown", () => this.hold(this.addHour));
-        document.getElementById("addMinBtn").addEventListener("mousedown", () => this.hold(this.addMin));
-        document.getElementById("subHourBtn").addEventListener("mousedown", () => this.hold(this.subHour));
-        document.getElementById("subMinBtn").addEventListener("mousedown", () => this.hold(this.subMin));
+        document.getElementsByClassName("addHourBtn")[0].addEventListener("mousedown", () => this.hold(this.addHour));
+        document.getElementsByClassName("addMinBtn")[0].addEventListener("mousedown", () => this.hold(this.addMin));
+        document.getElementsByClassName("subHourBtn")[0].addEventListener("mousedown", () => this.hold(this.subHour));
+        document.getElementsByClassName("subMinBtn")[0].addEventListener("mousedown", () => this.hold(this.subMin));
 
         window.addEventListener("mouseup", () => this.release());
 

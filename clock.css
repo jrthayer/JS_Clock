@@ -41,7 +41,7 @@ html, body {
     background: var(--clckBackground);
 }
 
-#clckDisplay{
+.clckDisplay{
     color: var(--clckTextColor);
     font-size: var(--clockFontSize);
     font-family: Orbitron;
@@ -49,11 +49,11 @@ html, body {
     display: inline;  
 }
 
-#clckAmPm{
+.clckAmPm{
     font-size: calc(var(--clockFontSize)/2);
 }
 
-#clckAlarm{
+.clckAlarm{
     position: relative;
     font-size: calc(var(--clockFontSize)/4);
     font-family: Orbitron;
@@ -64,7 +64,7 @@ html, body {
     margin-top: 10px;
 }
 
-#alrmHeader{
+.alrmHeader{
     position: absolute;
     top: 0;
     left: 50%;
@@ -73,15 +73,15 @@ html, body {
     background-color: var(--clckBackground);
 }
 
-#alrmDisplay{
+.alrmDisplay{
     display: inline;
 }
 
-#alrmAmPm{
+.alrmAmPm{
     font-size: calc(var(--clockFontSize)/8);
 }
 
-#alrmResetBtn{
+.alrmResetBtn{
     border: none;
     color: var(--clckBackground);
     background: red;
@@ -92,7 +92,7 @@ html, body {
     border-radius: 15px;
 }
 
-#armBtn{
+.armBtn{
     background: var(--clckBackground);
     color: var(--clckTextColor); 
     border: 1px var(--clckTextColor) solid;
